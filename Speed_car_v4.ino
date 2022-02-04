@@ -24,6 +24,7 @@ float distance = (numRotations*circumference*modelScale)/1000000.0; //distance i
 unsigned long timeLastRead = 0;
 unsigned long timeLastChanged = 0;
 
+//acceleration variables
 long prevTimeDifference = 0; //used to determine if accel
 long newTimeDifference = 0; //used to determine if accel
 long timeDifference = 0;
@@ -99,7 +100,7 @@ void loop()
         carSpeed=distance/timeTaken;        
        
         //Display car speed
-         //itoa(count, charDisplay, 10); //used for testing
+         //itoa(count, charDisplay, 10); //displays rotation count - used for testing
         dtostrf(carSpeed,3,0,charDisplay);
         
         writeText(false);
@@ -137,29 +138,3 @@ void writeText(bool useFirstChar)
   }
   alpha4.writeDisplay();
 }
-
-/*
-BIT REPRESENTATIONS
-0 DP N M - L K J H - G2 G1 F E - D C B A
-
-G1: 
-0 0 0 0 - 0 0 0 0 - 0 1 0 0 - 0 0 0 0
-
-DP:
-0100 0000 0000 0000
-
-L M N = 0x3800 (ie upward pointing arrow - use for accel)
-0011 1000 0000 0000 
-
-H J K = 0x700 (ie downward pointing arrow - use for decel)  
-0000 0111 0000 0000
-
-G1 G2 = 0xC0 (ie dash - use for same)
-0000 0000 1100 0000
-
-H K L N = 0x2D00 (ie X - use for calculating)
-0010 1101 0000 0000
-
-J G1 G2 M = 0x12C0 (ie + - use for calculating)
-0001 0010 1100 0000 
- */
