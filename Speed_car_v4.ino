@@ -62,7 +62,7 @@ void setup()
   writeText(true);
   delay(1000);
   
-  lastRead = digitalRead(2);
+  lastRead = digitalRead(hallPin); //read current state of hall sensor
 }
 
 void loop()
